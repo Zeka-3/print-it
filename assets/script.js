@@ -29,14 +29,22 @@ const dots = document.querySelectorAll(".dot")
 // on a créé un event listener , quand on clique sur la fleche droite on l'index plus 1 et on change de point (on va au prochain point)
 flechedroit.addEventListener("click", function () {
 	//alert("je clike sur la fleche droit")
-	indexactuel = indexactuel + 1
-	updateDots(indexactuel)
+	if (indexactuel >= slides.length - 1) {
+		indexactuel = 0;
+	}
+	else {
+		indexactuel = indexactuel + 1
+
+	}
+	updateDots(indexactuel);
+	updateCarousel(indexactuel);
 })
 
 flechegoche.addEventListener("click", function () {
 	//alert("je clik sur la fleche goche")
 	indexactuel = indexactuel - 1
 	updateDots(indexactuel)
+	updateCarousel(indexactuel)
 })
 //updatedots:Fonction pour mettre à jour les points
 function updateDots(index) {
@@ -49,6 +57,8 @@ function updateDots(index) {
 	})
 
 }
-function updateCarousel(index, direction) {
+function updateCarousel(index) {// Mettre à jour l'image
+	const imagePath = `assets/images/slideshow/${slides[indexactuel].image}`;
+	banerimg.src = imagePath;
 
 }
