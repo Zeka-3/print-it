@@ -42,7 +42,11 @@ flechedroit.addEventListener("click", function () {
 
 flechegoche.addEventListener("click", function () {
 	//alert("je clik sur la fleche goche")
-	indexactuel = indexactuel - 1
+	if (indexactuel === 0) {
+		indexactuel = slides.length - 1
+	} else {
+		indexactuel = indexactuel - 1
+	}
 	updateDots(indexactuel)
 	updateCarousel(indexactuel)
 })
@@ -60,5 +64,8 @@ function updateDots(index) {
 function updateCarousel(index) {// Mettre à jour l'image
 	const imagePath = `assets/images/slideshow/${slides[indexactuel].image}`;
 	banerimg.src = imagePath;
+	const tagLine = slides[indexactuel].tagLine;
+
+	document.querySelector("p").innerHTML = tagLine
 
 }
